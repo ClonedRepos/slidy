@@ -107,14 +107,22 @@ function prev() {
 	goTo(Math.max(currentSlide - 1, 0));
 }
 
-window.onload = function() {
+window.onload = async function() {
+  let e = document.getElementById('slide');
+  if (typeof(e.dataset.src) != 'undefined') {
+     var f = e.dataset.src;
+     var pre = await fetch(f).then( resp => resp.text() ).catch(console.error);
+     e.innerHTML = pre
+     //console.log('pre:',pre);
+  }
 	resize();
-	render(document.getElementById('slide').innerHTML);
+	render(e.innerHTML);
 	goTo(window.location.hash.substring(1)||0);
 	window.onclick = next;
 	window.onresize = resize;
 	window.onkeydown = function(e) {
 		if (e.keyCode == 39) {
+      //console.log('next');
 			next();
 		} else if (e.keyCode == 37) {
 			prev();

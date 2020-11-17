@@ -13,6 +13,9 @@ body {
 a:link {
   color: #aa99ee;
 }
+a:visited {
+  color: #eeddff;
+}
 a:hover {
   color: hotpink;
 }
